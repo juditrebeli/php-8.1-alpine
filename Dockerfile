@@ -28,12 +28,12 @@ COPY --from=webdevops/toolbox /baselayout/sbin/* /sbin/
 COPY --from=webdevops/toolbox /baselayout/usr/local/bin/* /usr/local/bin/
 
 ## Install go-replace
-RUN wget -O "/usr/local/bin/go-replace" "https://github.com/webdevops/goreplace/releases/download/1.1.2/gr-arm64-linux" \
+RUN wget -O "/usr/local/bin/go-replace" "https://github.com/webdevops/go-replace/releases/download/22.10.0/go-replace.linux.arm64" \
     && chmod +x "/usr/local/bin/go-replace" \
     && "/usr/local/bin/go-replace" --version \
     # Install gosu
-    && wget -O "/sbin/gosu" "https://github.com/tianon/gosu/releases/download/1.10/gosu-arm64" \
-    && wget -O "/tmp/gosu.asc" "https://github.com/tianon/gosu/releases/download/1.10/gosu-arm64.asc" \
+    && wget -O "/sbin/gosu" "https://github.com/tianon/gosu/releases/download/1.16/gosu-arm64" \
+    && wget -O "/tmp/gosu.asc" "https://github.com/tianon/gosu/releases/download/1.16/gosu-arm64.asc" \
     && export GNUPGHOME="$(mktemp -d)" \
    # && gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
     #&& gpg --batch --verify /tmp/gosu.asc "/sbin/gosu" \
@@ -159,7 +159,7 @@ RUN set -x \
     && git clone --branch master --depth 1 https://github.com/Imagick/imagick.git /usr/src/php/ext/imagick \
     && git clone --branch master --depth 1 https://github.com/php-amqp/php-amqp.git /usr/src/php/ext/amqp \
     && cd /usr/src/php/ext/amqp && git submodule update --init \
-    && docker-php-ext-configure \
+    && docker-php-ext-configure ldap \
     && PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install \
         bcmath \
