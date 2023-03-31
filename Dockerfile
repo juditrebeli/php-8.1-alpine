@@ -32,8 +32,8 @@ RUN wget -O "/usr/local/bin/go-replace" "https://github.com/webdevops/go-replace
     && chmod +x "/usr/local/bin/go-replace" \
     && "/usr/local/bin/go-replace" --version \
     # Install gosu
-    && wget -O "/sbin/gosu" "https://github.com/tianon/gosu/releases/download/1.16/gosu-arm64" \
-    && wget -O "/tmp/gosu.asc" "https://github.com/tianon/gosu/releases/download/1.16/gosu-arm64.asc" \
+    && wget -O "/sbin/gosu" "https://github.com/tianon/gosu/releases/download/1.10/gosu-arm64" \
+    && wget -O "/tmp/gosu.asc" "https://github.com/tianon/gosu/releases/download/1.10/gosu-arm64.asc" \
     && export GNUPGHOME="$(mktemp -d)" \
    # && gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
     #&& gpg --batch --verify /tmp/gosu.asc "/sbin/gosu" \
